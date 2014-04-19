@@ -5,7 +5,8 @@ angular
     'ngCookies',
     'ngResource',
     'ngSanitize',
-    'ngRoute'
+    'ngRoute',
+    'ngMockE2E'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -15,5 +16,10 @@ angular
       })
       .otherwise({
         redirectTo: '/'
-      });
+      })
+  })
+  .run(function ($httpBackend) {
+
+    // root
+    $httpBackend.whenGET(/\/{1}/).passThrough();
   });
