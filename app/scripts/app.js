@@ -14,6 +14,14 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/signup', {
+        templateUrl: 'views/authentication/signup.html',
+        controller: 'AuthenticationCtrl'
+      })
+      .when('/signin', {
+        templateUrl: 'views/authentication/signin.html',
+        controller: 'AuthenticationCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       })
