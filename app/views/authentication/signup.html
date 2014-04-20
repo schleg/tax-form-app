@@ -12,7 +12,7 @@
           <div class="form-group">
             <label for="addressLine1">Street Address Line 1</label>
             <input type="text" class="form-control" name="addressLine1" id="addressLine1" ng-model="user.addressLine1" ng-required="true">
-            <span class="help-block" ng-show="validated && userForm.addressLine1.$error.required">Required</span>
+            <span class="help-block" id="address-line-1-required-message" ng-show="validated && userForm.addressLine1.$error.required">Required</span>
           </div>
           <div class="form-group">
             <label for="addressLine2">Street Address Line 2</label>

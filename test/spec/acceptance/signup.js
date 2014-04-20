@@ -41,4 +41,22 @@ describe('Signing up', function () {
       });
     })
   });
+
+  it('should show required message for address line 1 if missing', function () {
+    visitSignUp().then(function () {
+      clickSignUpButton().then(function () {
+        checkValidationMessage('address-line-1-required-message', 'Required');
+      });
+    })
+  });
+
+  it('should not show required message for address line 1 if not missing', function () {
+    visitSignUp().then(function () {
+      element(by.id('name')).sendKeys('1600 Pennsylvania Ave');
+      clickSignUpButton().then(function () {
+        checkValidationMessage('address-line-1-required-message', '');
+      });
+    })
+  });
+
 });
