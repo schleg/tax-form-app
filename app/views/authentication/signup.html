@@ -24,7 +24,7 @@
         <div class="col-md-4">
           <label for="city">City</label>
           <input type="text" class="form-control" name="city" id="city" ng-model="user.city" ng-required="true">
-          <span class="help-block" ng-show="validated && userForm.city.$error.required">Required</span>
+          <span class="help-block" id="city-required-message" ng-show="validated && userForm.city.$error.required">Required</span>
         </div>
         <div class="col-md-3">
           <label for="state">State</label>

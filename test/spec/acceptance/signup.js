@@ -59,4 +59,20 @@ describe('Signing up', function () {
     })
   });
 
+  it('should show required message for city if missing', function () {
+    visitSignUp().then(function () {
+      clickSignUpButton().then(function () {
+        checkValidationMessage('city-required-message', 'Required');
+      });
+    })
+  });
+
+  it('should not show required message for city if not missing', function () {
+    visitSignUp().then(function () {
+      element(by.id('name')).sendKeys('Seattle');
+      clickSignUpButton().then(function () {
+        checkValidationMessage('city-required-message', '');
+      });
+    })
+  });
 });
