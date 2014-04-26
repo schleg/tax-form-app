@@ -1,7 +1,7 @@
 angular.module("config", [])
 
-.constant("ENV", "development")
+.constant("ENV", "production")
 
-.constant("TAX_COMPACTOR_API_ROOT", "http://localhost:3000/api")
+.constant("TAX_COMPACTOR_API_ROOT", "http://tax-compactor-api.herokuapp.com/api")
 
 ;

@@ -339,6 +339,14 @@ module.exports = function (grunt) {
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
+        }, {
+          expand: true,
+          cwd: '.',
+          dest: '<%= yeoman.dist %>',
+          src: [
+            'web.js',
+            'Procfile'
+          ]
         }]
       },
       styles: {
@@ -486,8 +494,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build-production', [
     'clean:dist',
-    'sass',
-    'bower-install',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
@@ -501,13 +507,10 @@ module.exports = function (grunt) {
     'rev',
     'usemin',
     'htmlmin',
-    'exec'
   ]);
 
   grunt.registerTask('build-staging', [
     'clean:dist',
-    'sass',
-    'bower-install',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
@@ -521,7 +524,6 @@ module.exports = function (grunt) {
     'rev',
     'usemin',
     'htmlmin',
-    'exec'
   ]);
 
   grunt.registerTask('default', [
