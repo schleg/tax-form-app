@@ -2,6 +2,7 @@
 
 angular
   .module('taxCompactorApp', [
+    'config',
     'ngCookies',
     'ngResource',
     'ngSanitize',
@@ -27,7 +28,6 @@ angular
       })
   })
   .run(function ($httpBackend) {
-
-    // root
+    $httpBackend.whenPUT(/\/{1}/).passThrough();
     $httpBackend.whenGET(/\/{1}/).passThrough();
   });

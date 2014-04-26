@@ -15,6 +15,8 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
+  grunt.loadNpmTasks('grunt-ng-constant');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -324,6 +326,38 @@ module.exports = function (grunt) {
       }
     },
 
+    ngconstant: {
+      options: {
+        space: ' ',
+        dest: '<%= yeoman.app %>/scripts/config.js',
+        name: 'config'
+      },
+      development: {
+        constants: {
+          ENV: 'development',
+          TAX_COMPACTOR_API_ROOT: 'http://localhost:3000/api',
+        }
+      },
+      production: {
+        constants: {
+          ENV: 'production',
+          TAX_COMPACTOR_API_ROOT: 'http://tax-compactor-api.herokuapp.com/api',
+        }
+      },
+      test: {
+        constants: {
+          ENV: 'test',
+          TAX_COMPACTOR_API_ROOT: 'http://localhost:3000/api',
+        }
+      },
+      staging: {
+        constants: {
+          ENV: 'staging',
+          TAX_COMPACTOR_API_ROOT: 'http://tax-compactor-api-staging.herokuapp.com/api',
+        }
+      }
+    },
+
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
@@ -383,6 +417,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'bowerInstall',
+      'ngconstant:development',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',

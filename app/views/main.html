@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-md-8">
+    <h2>Preparation</h2>
+    <p>Change your information below and find the forms that are required.</p>
+    <form role="form">
+      <div class="form-group">
+        <label for="preparation-age">Age</label>
+        <input class="form-control" id="preparation-age" type="text"
+        ng-model="preparation.age"></input>
+      </div>
+      <div class="form-group">
+        <label for="preparation-spouse-age">Spouse Age</label>
+        <input class="form-control" id="preparation-spouse-age" type="text"
+        ng-model="preparation.spouse_age"></input>
+      </div>
+      <div class="form-group">
+        <label for="preparation-taxable-income">Taxable Income</label>
+        <input class="form-control" id="preparation-taxable-income"
+        type="text" ng-model="preparation.taxable_income"></input>
+      </div>
+      <div class="form-group">
+        <label for="preparation-interest-income">Interest Income</label>
+        <input class="form-control" id="preparation-interest-income"
+        type="text" ng-model="preparation.interest_income"></input>
+      </div>
+      <div class="checkbox">
+        <label for="preparation-itemizing-deductions">
+          <input id="preparation-itemizing-deductions" type="checkbox"
+          ng-model="preparation.itemizing_deductions"></input>
+          Itemizing Deductions
+        </label>
+      </div>
+      <input class="btn btn-default btn-lg" type="button" value="Find Forms"
+      ng-click="update()"></input>
+    </form>
+  </div>
+  <div class="col-md-4">
+    <h3>Forms</h3>
+    <ul>
+      <li ng-repeat="form in forms">{{form.name}}</li>
+    </ul>
+  </div>
+</div>
