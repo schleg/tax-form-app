@@ -16,6 +16,7 @@ module.exports = function (grunt) {
   require('time-grunt')(grunt);
 
   grunt.loadNpmTasks('grunt-ng-constant');
+  grunt.loadNpmTasks('grunt-build-control');
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -25,6 +26,28 @@ module.exports = function (grunt) {
       // configurable paths
       app: require('./bower.json').appPath || 'app',
       dist: 'dist'
+    },
+
+    buildcontrol: {
+      options: {
+        dir: 'dist',
+        commit: true,
+        push: true,
+        message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%',
+        connectCommits: false
+      },
+      'heroku-production': {
+        options: {
+          remote: 'git@heroku.com:tax-compactor-app.git',
+          branch: 'master'
+        }
+      },
+      'heroku-staging': {
+        options: {
+          remote: 'git@heroku.com:tax-compactor-app-staging.git',
+          branch: 'master'
+        }
+      }
     },
 
     // Watches files for changes and runs tasks based on the changed files
@@ -453,6 +476,52 @@ module.exports = function (grunt) {
     'rev',
     'usemin',
     'htmlmin'
+  ]);
+
+  grunt.registerTask('default', [
+    'newer:jshint',
+    'test',
+    'build'
+  ]);
+
+  grunt.registerTask('build-production', [
+    'clean:dist',
+    'sass',
+    'bower-install',
+    'useminPrepare',
+    'concurrent:dist',
+    'autoprefixer',
+    'concat',
+    'ngmin',
+    'copy:dist',
+    'ngconstant:production',
+    'cdnify',
+    'cssmin',
+    'uglify',
+    'rev',
+    'usemin',
+    'htmlmin',
+    'exec'
+  ]);
+
+  grunt.registerTask('build-staging', [
+    'clean:dist',
+    'sass',
+    'bower-install',
+    'useminPrepare',
+    'concurrent:dist',
+    'autoprefixer',
+    'concat',
+    'ngmin',
+    'copy:dist',
+    'ngconstant:staging',
+    'cdnify',
+    'cssmin',
+    'uglify',
+    'rev',
+    'usemin',
+    'htmlmin',
+    'exec'
   ]);
 
   grunt.registerTask('default', [
